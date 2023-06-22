@@ -7,29 +7,32 @@ import Navbar from './components/layout/Navbar.jsx'
 import Footer from './components/layout/Footer.jsx'
 
 import { GithubProvider } from './context/github/GithubContext'
+import { AlertProvider } from './context/alert/AlertContext'
 
 function App() {
   return (
     <GithubProvider>
-    <Router>
-      <div className='flex flex-col justify-between h-screen'>
-    <Navbar></Navbar>
+      <AlertProvider>
+      <Router>
+        <div className='flex flex-col justify-between h-screen'>
+          <Navbar></Navbar>
 
-    <main className='container mx-auto px-3 pb-12'>
-<Routes>
-<Route path="/" element= { <Home /> } />
-<Route path="/about" element= { <About /> } />
-<Route path="/noutfound" element= { <NotFound /> } />
-<Route path="/*" element= { <NotFound /> } />
+          <main className='container mx-auto px-3 pb-12'>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/noutfound" element={<NotFound />} />
+              <Route path="/*" element={<NotFound />} />
 
 
-</Routes>
+            </Routes>
 
-</main>
-    <Footer></Footer>
-      </div> 
+          </main>
+          <Footer></Footer>
+        </div>
       </Router>
-      </GithubProvider>
+      </AlertProvider>
+    </GithubProvider>
   );
 }
 
