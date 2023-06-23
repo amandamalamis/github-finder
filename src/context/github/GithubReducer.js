@@ -6,10 +6,11 @@ const githubReducer = (state, action) => {
                 users: action.payload, //users is the array of users
                 loading: false,
             }
-        case 'GET_USER':
+        case 'GET_USER_AND_REPOS': //COMBINED FROM GET USER AND GET REPOS
             return {
                 ...state, //will return the current state
-                user: action.payload, //user is the single user object
+                user: action.payload.user, //user is the single user object
+                repos: action.payload.repos,
                 loading: false,
             }
         case 'SET_LOADING':
@@ -22,12 +23,6 @@ const githubReducer = (state, action) => {
                 ...state, //will return the current state
                 users: [],
                 loading: true,
-            }
-        case 'GET_REPOS':
-            return {
-                ...state, //will return the current state
-                repos: action.payload,
-                loading: false,
             }
         default:
             return state
