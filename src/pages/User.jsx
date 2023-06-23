@@ -1,4 +1,3 @@
-
 import { FaCodepen, FaStore, FaUserFriends, FaUsers } from 'react-icons/fa'
 import { useEffect, useContext } from 'react'
 import { useParams, Link } from 'react-router-dom'
@@ -35,7 +34,6 @@ function User() {
         const getUserData = async () => {
             const userData = await getUserAndRepos(params.login)
             dispatch({ type: "GET_USER_AND_REPOS", payload: userData })
-
         }
         getUserData()
         //getUser(params.login)

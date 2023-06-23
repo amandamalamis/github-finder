@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+
 import Home from './pages/Home'
 import About from './pages/About'
 import NotFound from './pages/NotFound'
 import User from './pages/User'
-
 
 import Navbar from './components/layout/Navbar.jsx'
 import Footer from './components/layout/Footer.jsx'
@@ -22,13 +22,19 @@ function App() {
 
           <main className='container mx-auto px-3 pb-12'>
             <Routes>
-              <Alert />
-              <Route exact path="/" element={<Home />} />
+              
+              <Route path="/" element={
+                <>
+                <Alert />
+                <Home />
+                </>
+              } 
+              />
               <Route path="/about" element={<About />} />
               <Route path="/user/:login" element={<User />} />
 
               <Route path="/notfound" element={<NotFound />} />
-              <Route component= {<NotFound />} />
+              <Route path='*' element= {<NotFound />} />
 
             </Routes>
 
@@ -38,7 +44,7 @@ function App() {
       </Router>
       </AlertProvider>
     </GithubProvider>
-  );
+  )
 }
 
-export default App;
+export default App

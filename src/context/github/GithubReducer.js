@@ -22,7 +22,6 @@ const githubReducer = (state, action) => {
             return {
                 ...state, //will return the current state
                 users: [],
-                loading: true,
             }
         default:
             return state

@@ -22,13 +22,10 @@ function Navbar({ title }) {
                         </Link>
                     </div>
                 </div>
-
-
             </div>
         </nav>
     )
 }
-
 
 Navbar.defaultProps = {
     title: 'Github Finder'

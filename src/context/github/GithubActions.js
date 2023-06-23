@@ -11,7 +11,6 @@ const github = axios.create({
 //Get search results
 export const searchUsers = async (text) => {
     //will call dispatch loading so can remove here
-
     const params = new URLSearchParams({
         q: text
     })
@@ -19,8 +18,19 @@ export const searchUsers = async (text) => {
     //updated to use axios
     const response = await github.get(`/search/users/?${params}`)
     return response.data.items
-
 }
+
+//Get user and get repos-takes place of both functions below
+export const getUserAndRepos = async (login) => {
+    const [user, repos] = await Promise.all([
+        github.get(`/users/${login}`),
+        github.get(`/users/${login}/repos`)
+    ])
+
+    //from the above requests & function
+    return { user: user.data, repos: repos.data }
+}
+
 
 //get single user
 // export const getUser = async (login) => {
@@ -63,14 +73,3 @@ export const searchUsers = async (text) => {
 //     const data = await response.json()
 //     return data
 // }
-
-//get user and get repos-takes place of both functions above
-export const getUserAndRepos = async (login) => {
-    const [user, repos] = await Promise.all([
-        github.get(`/users/${login}`),
-        github.get(`/users/${login}/repos`)
-    ])
-
-    //from the above requests & function
-    return { user: user.data, repos: repos.data }
-}
