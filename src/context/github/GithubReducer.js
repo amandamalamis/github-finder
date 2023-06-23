@@ -3,7 +3,13 @@ const githubReducer = (state,action) => {
         case 'GET_USERS': 
         return {
             ...state, //will return the current state
-            users: action.payload,
+            users: action.payload, //users is the array of users
+            loading: false,
+        }
+        case 'GET_USER': 
+        return {
+            ...state, //will return the current state
+            user: action.payload, //user is the single user object
             loading: false,
         }
         case 'SET_LOADING': 
