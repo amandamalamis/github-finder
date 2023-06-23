@@ -1,5 +1,5 @@
 
-import { FaCodeOen, FaStore, FaUSerFriends, FaUsers } from 'react-icons/fa'
+import { FaCodeOen, FaCodepen, FaStore, FaUSerFriends, FaUserFriends, FaUsers } from 'react-icons/fa'
 import { useEffect, useContext } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import Spinner from '../components/layout/Spinner'
@@ -23,7 +23,7 @@ function User() {
         followers,
         following,
         public_repos,
-        public_ggists,
+        public_gists,
         hireable
     } = user
 
@@ -47,6 +47,7 @@ function User() {
                 Back to search
             </Link>
         </div>
+
         <div className="grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-3 mb-8md:gap-8">
             <div className="custom-card-image mb-6 md:md-0">
                 <div className="rounded-lg shadow-xl card image-full">
@@ -60,6 +61,120 @@ function User() {
                             {name}
                         </h2>
                         <p>{login}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div className="col-span-2">
+                <div className="mb-6">
+                    <h1 className="text-3xl card-title">
+                        {name}
+                        <div className=" ml-2 mr-1 badge badge-success">
+                            {type}
+                            {hireable && (
+                            //if hireable is true
+                                <div className="mx-1 badge badge-info">
+                                    Hireable
+                                </div>
+                            ) }
+                        </div>
+                    </h1>
+                    <p>{bio}</p>
+                    <div className="mt-4 card-actions">
+                        <a href={html_url} target="_blank" rel="noreferrer" className='btn btn-outline'>
+                            Visit GitHub Profile
+                        </a>
+                    </div>
+                </div>
+                <div className="w-full rounded-lg shadow-md bg-base-100 stats">
+
+                    {location && (
+                        <div className="stat">
+                            <div className="stat-title text-md">
+                                Location
+                            </div>
+                            <div className="text-lg stat-value">
+                                {location}
+                            </div>
+                        </div>
+                    )}
+
+                    {blog && (
+                        //blog is the website name
+                        <div className="stat">
+                            <div className="stat-title text-md">
+                                Website
+                            </div>
+                            <div className="text-lg stat-value">
+                                <a href={`https://${blog}`} target="_blank" rel="noreferrer">
+                                    {blog}
+                                </a>
+
+                            </div>
+                        </div>
+                    )}
+
+                    {twitter_username && (
+                        //blog is the website name
+                        <div className="stat">
+                            <div className="stat-title text-md">
+                                Twitter
+                            </div>
+                            <div className="text-lg stat-value">
+                                <a href={`https://twitter.com/${twitter_username}`} target="_blank" rel="noreferrer">
+                                    {twitter_username}
+                                </a>
+                            </div>
+                        </div>
+                    )}
+                </div>
+                <div className="w-full py-5 mb-6 rounded-lg shadow-md bg-base-100 stats">
+                    <div className="stat">
+                        <div className="stat-figure text-secondary">
+                            <FaUsers className='text-3xl md:text-5xl'></FaUsers>
+                        </div>
+                        <div className="start-title pr-5">
+                            Followers
+                        </div>
+                        <div className="stat-value pr-5 text-3xl md:text-4xl">
+                            {followers}
+                        </div>
+                    </div>
+
+                    <div className="stat">
+                        <div className="stat-figure text-secondary">
+                            <FaUserFriends className='text-3xl md:text-5xl'></FaUserFriends>
+                        </div>
+                        <div className="start-title pr-5">
+                            Following
+                        </div>
+                        <div className="stat-value pr-5 text-3xl md:text-4xl">
+                            {following}
+                        </div>
+                    </div>
+
+                    <div className="stat">
+                        <div className="stat-figure text-secondary">
+                            <FaCodepen className='text-3xl md:text-5xl'></FaCodepen>
+                        </div>
+                        <div className="start-title pr-5">
+                            Public Repos
+                        </div>
+                        <div className="stat-value pr-5 text-3xl md:text-4xl">
+                            {public_repos}
+                        </div>
+                    </div>
+
+                    <div className="stat">
+                        <div className="stat-figure text-secondary">
+                            <FaStore className='text-3xl md:text-5xl'></FaStore>
+                        </div>
+                        <div className="start-title pr-5">
+                            Public Gists
+                        </div>
+                        <div className="stat-value pr-5 text-3xl md:text-4xl">
+                            {public_gists}
+                        </div>
                     </div>
                 </div>
             </div>
