@@ -6,7 +6,7 @@ const GithubContext = createContext()
 const GITHUB_URL = process.env.REACT_APP_GITHUB_URL
 const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN
 
-export const GithubProvider = ( {children }) => {
+export const GithubProvider = ({ children }) => {
     const initialState = {
         users: [],
         user: {}, //single user
@@ -18,10 +18,10 @@ export const GithubProvider = ( {children }) => {
 
 
     // clear users from state
-    const clearUsers =  () => {
+    const clearUsers = () => {
 
-         dispatch( {
-            type:'CLEAR_USERS',
+        dispatch({
+            type: 'CLEAR_USERS',
             //payload: text,
         })
     }
@@ -30,7 +30,7 @@ export const GithubProvider = ( {children }) => {
     //Get initial users - testing purposes
     const searchUsers = async (text) => {
         setLoading()
-        
+
         const params = new URLSearchParams({
             q: text
         })
@@ -41,19 +41,19 @@ export const GithubProvider = ( {children }) => {
                 }
             })
 
-        const {items} = await response.json()
+        const { items } = await response.json()
 
-        dispatch( {
-            type:'GET_USERS',
+        dispatch({
+            type: 'GET_USERS',
             payload: text,
-        })               
+        })
     }
 
     //get single user
     const getUser = async (login) => {
         setLoading()
-        
-        
+
+
         const response = await fetch(`${GITHUB_URL}/users/?{login}`,
             {
                 headers: {
@@ -61,24 +61,29 @@ export const GithubProvider = ( {children }) => {
                 }
             })
 
-            if(response.status === 404) { //force redirect to notfound page
-                window.location = '/notfound'
-            }
-            else {
-                const data = await response.json() 
-                
-                dispatch( {
-                    type:'GET_USER',
-                    payload: data, //the single user from the response
-                })    
-            }        
+        if (response.status === 404) { //force redirect to notfound page
+            window.location = '/notfound'
+        }
+        else {
+            const data = await response.json()
+
+            dispatch({
+                type: 'GET_USER',
+                payload: data, //the single user from the response
+            })
+        }
     }
 
     //get user respos
     const getUserRepos = async (login) => {
         setLoading()
-        
-        const response = await fetch(`${GITHUB_URL}/users/${login}/repos`,
+
+        const params = new URLSearchParams({
+            sort: 'created',
+            per_page: 10
+        })
+
+        const response = await fetch(`${GITHUB_URL}/users/${login}/repos?${params}`,
             {
                 headers: {
                     Authorization: `token ${GITHUB_TOKEN}`,
@@ -87,18 +92,18 @@ export const GithubProvider = ( {children }) => {
 
         const data = await response.json()
 
-        dispatch( {
-            type:'GET_REPOS',
+        dispatch({
+            type: 'GET_REPOS',
             payload: data,
-        })               
+        })
     }
-    
-    //Set loading
-    const setLoading = () => dispatch ( { type: 'SET_LOADING' })
 
-    return <GithubContext.Provider 
-        value={{ 
-            users: state.users, 
+    //Set loading
+    const setLoading = () => dispatch({ type: 'SET_LOADING' })
+
+    return <GithubContext.Provider
+        value={{
+            users: state.users,
             user: state.user,
             loading: state.loading,
             repos: state.repos,
@@ -107,7 +112,7 @@ export const GithubProvider = ( {children }) => {
             getUser,
             getUserRepos
 
-            }}>
+        }}>
         {children}
     </GithubContext.Provider>
 }
