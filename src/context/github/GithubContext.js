@@ -15,23 +15,23 @@ export const GithubProvider = ({ children }) => {
 
 
     return (
-    <GithubContext.Provider
-        value={{
-            ...state, //using this spreads all state values instead of writing the following 4 lines: 
-            // users: state.users,
-            // user: state.user,
-            // loading: state.loading,
-            // repos: state.repos,
-            dispatch,
-            //storing the below in an action file, in component, calling the action and dispatching the action to the reducer, passing the payload, updating the user state
-            //4 following moved to the actions file:
-            //searchUsers,
-            //clearUsers,
-            // getUser,
-            //getUserRepos
-        }}>
-        {children}
-    </GithubContext.Provider>
+        <GithubContext.Provider
+            value={{
+                ...state, //using this spreads all state values instead of writing the following 4 lines: 
+                // users: state.users,
+                // user: state.user,
+                // loading: state.loading,
+                // repos: state.repos,
+                dispatch,
+                //storing the below in an action file, in component, calling the action and dispatching the action to the reducer, passing the payload, updating the user state
+                //4 following moved to the actions file:
+                //searchUsers,
+                //clearUsers,
+                // getUser,
+                //getUserRepos
+            }}>
+            {children}
+        </GithubContext.Provider>
     )
 }
 

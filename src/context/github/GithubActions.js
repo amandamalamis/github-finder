@@ -5,7 +5,10 @@ const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN
 
 const github = axios.create({
     baseURL: GITHUB_URL,
-    headers: { Authorization: `token ${GITHUB_TOKEN}` }
+    headers: {
+        Authorization: `${GITHUB_TOKEN}`,
+        validateStatus: false
+    }
 })
 
 //Get search results
@@ -14,9 +17,9 @@ export const searchUsers = async (text) => {
     const params = new URLSearchParams({
         q: text
     })
-
+    console.log(params)
     //updated to use axios
-    const response = await github.get(`/search/users/?${params}`)
+    const response = await github.get(`/search/users?${params}`)
     return response.data.items
 }
 
