@@ -42,7 +42,7 @@ function UserSearch() {
                 <div>
                     <button
                         onClick={() => dispatch({ type: "CLEAR_USERS" })}
-                        className="btn btn-ghost btn-lg">
+                        className="btn btn-outline btn-lg">
                         Clear</button>
                 </div>
             )}

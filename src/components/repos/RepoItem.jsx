@@ -1,6 +1,7 @@
 import { FaEye, FaInfo, FaLink, FaStar, FaUtensils } from 'react-icons/fa'
 import PropTypes from 'prop-types'
 
+
 //prop repo
 function RepoItem({ repo }) {
     const {
@@ -14,13 +15,13 @@ function RepoItem({ repo }) {
     } = repo
 
     return (
-        <div className='mb-2 rounded-md card bg-gray-800 hover:bg-gray-900'>
+        <div className='mb-2 rounded-md card'>
             <div className='card-body'>
                 <h3 className="mb-2 text-sl font-semi-bold">
-                {/* // eslint-disable-next-line
+                    {/* // eslint-disable-next-line
                     //will bring users to the repo page */}
-                    <a href={html_url}>
-                        <FaLink className='inline mr-1'>{name} </FaLink>
+                    <a href={html_url} target='_blank' rel='noreferrer'>
+                        <FaLink className='inline mr-1'>{name} </FaLink> {name}
                     </a>
                 </h3>
                 <p className="mb-3">{description}</p>

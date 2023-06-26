@@ -53,7 +53,7 @@ function User() {
                     </Link>
                 </div>
 
-                <div className="grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-3 mb-8md:gap-8">
+                <div className="grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-3 mb-8 md:gap-8">
                     <div className="custom-card-image mb-6 md:md-0">
                         <div className="rounded-lg shadow-xl card image-full">
                             <figure>
@@ -74,14 +74,16 @@ function User() {
                         <div className="mb-6">
                             <h1 className="text-3xl card-title">
                                 {name}
-                                <div className=" ml-2 mr-1 badge badge-success">
-                                    {type}
+                                <div>
+                                    <div className=" ml-2 mr-1 badge badge-success">
+                                        {type} </div>
                                     {hireable && (
                                         //if hireable is true
                                         <div className="mx-1 badge badge-info">
                                             Hireable
                                         </div>
                                     )}
+
                                 </div>
                             </h1>
                             <p>{bio}</p>
