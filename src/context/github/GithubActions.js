@@ -17,7 +17,7 @@ export const searchUsers = async (text) => {
     const params = new URLSearchParams({
         q: text
     })
-git     //updated to use axios
+    //updated to use axios
     const response = await github.get(`/search/users?${params}`)
     return response.data.items
 }
